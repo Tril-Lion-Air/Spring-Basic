@@ -6,8 +6,7 @@ public class NetworkClient {
 
     public NetworkClient() {
         System.out.println("생성자 호출, url = " + url);
-        connect();
-        call("초기화 연결 메시지");
+
     }
 
     public void setUrl(String url) {
@@ -20,7 +19,7 @@ public class NetworkClient {
     }
 
     public void call (String message) {
-        System.out.println("call: " + url + "message = " + message);
+        System.out.println("call: " + url + " message = " + message);
     }
 
     //서비스 종료시 호출
@@ -28,4 +27,14 @@ public class NetworkClient {
         System.out.println("close: " + url);
     }
 
+    public void init() throws Exception {
+        System.out.println("NetworkClient.afterPropertiesSet");
+        connect();
+        call("초기화 연결 메시지");
+    }
+
+    public void close() throws Exception {
+        System.out.println("NetworkClient.destroy");
+        disconnect();
+    }
 }
